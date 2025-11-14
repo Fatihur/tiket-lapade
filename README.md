@@ -166,6 +166,30 @@ Setelah menjalankan seeder, gunakan akun berikut untuk login:
 - [Panduan Penggunaan](PANDUAN_PENGGUNAAN.md)
 - [PRD (Product Requirements Document)](prd.md)
 
+## Deployment ke Production
+
+Untuk deploy ke production server, ikuti langkah berikut:
+
+### Quick Deploy
+```bash
+# Build assets
+npm run build
+
+# Optimize Laravel
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+### Update .env untuk Production
+```env
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://yourdomain.com
+```
+
+📖 **Dokumentasi lengkap:** Lihat [DEPLOYMENT.md](DEPLOYMENT.md)
+
 ## Catatan Penting
 
 1. **QR Code Scanner** memerlukan HTTPS atau localhost untuk akses kamera
@@ -173,6 +197,7 @@ Setelah menjalankan seeder, gunakan akun berikut untuk login:
 3. **Storage Permission** pastikan folder `storage` dan `bootstrap/cache` writable
 4. **Backup Database** lakukan backup secara berkala
 5. **Production Mode** set `APP_DEBUG=false` untuk production
+6. **Build Assets** jalankan `npm run build` sebelum deploy
 
 ## Troubleshooting
 

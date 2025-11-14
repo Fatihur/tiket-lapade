@@ -71,6 +71,11 @@ yarn.lock
 *.pdf
 !resources/views/pdf/*.blade.php
 
+# Keep deployment files
+!deploy.sh
+!DEPLOYMENT.md
+!COMMANDS.md
+
 # Database
 *.sqlite
 *.sqlite-journal
