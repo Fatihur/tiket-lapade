@@ -12,6 +12,9 @@ GET http://[::1]:5173/resources/js/app.js net::ERR_BLOCKED_BY_CLIENT
 ### Penyebab:
 Laravel masih mencoba menggunakan Vite dev server padahal seharusnya menggunakan build assets.
 
+### Catatan Penting:
+**Landing page sudah tidak menggunakan Vite!** Landing page sekarang menggunakan Tailwind CSS CDN, jadi error ini seharusnya hanya muncul di admin dashboard.
+
 ### Solusi:
 
 #### 1. Pastikan APP_ENV sudah production

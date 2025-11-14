@@ -2,11 +2,16 @@
 
 ## Persiapan Sebelum Deploy
 
-### 1. Build Assets
+### 1. Build Assets (Opsional)
 ```bash
 npm install
 npm run build
 ```
+
+**Catatan:** 
+- Landing page menggunakan Tailwind CSS CDN, jadi tidak perlu build
+- Build hanya diperlukan untuk admin dashboard
+- Jika tidak build, admin dashboard akan tetap berfungsi tapi mungkin ada warning di console
 
 Ini akan menghasilkan file di folder `public/build/` yang siap untuk production.
 

@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Tiket | Lapade - Utan, Sumbawa</title>
     <meta name="description" content="Lihat detail fasilitas, harga tiket, dan galeri resmi Wisata Lapade sebelum melakukan pemesanan.">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased">
     @php

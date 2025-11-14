@@ -44,7 +44,9 @@ Aplikasi web untuk pemesanan tiket wisata secara online dengan sistem validasi p
 
 - **Framework**: Laravel 12
 - **Database**: MySQL / SQLite
-- **Frontend**: Blade Template, Tailwind CSS, Bootstrap
+- **Frontend**: 
+  - Admin Dashboard: Blade Template + Bootstrap (Vite)
+  - Landing Page: Blade Template + Tailwind CSS (CDN)
 - **QR Code**: SimpleSoftwareIO/simple-qrcode
 - **QR Scanner**: HTML5-QRCode
 - **Charts**: Chart.js
@@ -90,11 +92,14 @@ php artisan db:seed
 php artisan storage:link
 ```
 
-### 5. Build Assets
+### 5. Build Assets (Opsional untuk Admin Dashboard)
 
 ```bash
+npm install
 npm run build
 ```
+
+**Catatan:** Landing page menggunakan Tailwind CDN, jadi tidak perlu build. Build hanya diperlukan untuk admin dashboard.
 
 ### 6. Jalankan Aplikasi
 

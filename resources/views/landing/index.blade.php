@@ -5,7 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lapade Adventure Pass | Pemesanan Tiket Wisata</title>
     <meta name="description" content="Pesan tiket resmi Wisata Lapade di Utan, Kabupaten Sumbawa, Nusa Tenggara Barat.">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased scroll-smooth">
     @php
