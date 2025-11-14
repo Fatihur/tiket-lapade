@@ -22,8 +22,6 @@
     @php
         $namaWisata = $wisata->nama_wisata ?? 'Wisata Lapade';
         $deskripsi = $wisata->deskripsi ?: 'Pengelola Lapade menyediakan suasana alam pesisir Utan yang masih asri dengan fasilitas yang terus ditingkatkan.';
-        $heroImagePath = optional($wisata->galeri->first())->path_file;
-        $galleryImages = $wisata->galeri->skip(1)->take(4);
         $hargaDewasa = $wisata->harga_tiket_dewasa ?? $wisata->harga_tiket;
         $hargaAnak = $wisata->harga_tiket_anak ?? null;
     @endphp
@@ -52,13 +50,8 @@
 
             <section class="relative isolate overflow-hidden pt-32 pb-24">
                 <div class="absolute inset-0">
-                    @if($heroImagePath)
-                        <img src="{{ Storage::url($heroImagePath) }}" alt="{{ $namaWisata }}" class="h-full w-full object-cover">
-                        <div class="absolute inset-0 bg-slate-900/70"></div>
-                    @else
-                        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-emerald-800"></div>
-                        <div class="absolute inset-0 bg-slate-900/60"></div>
-                    @endif
+                    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-emerald-800"></div>
+                    <div class="absolute inset-0 bg-slate-900/60"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/25"></div>
                 </div>
                 <div class="relative z-10 mx-auto max-w-4xl px-4 text-center text-white">

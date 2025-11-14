@@ -205,6 +205,7 @@ APP_URL=https://yourdomain.com
 4. **Backup Database** lakukan backup secara berkala
 5. **Production Mode** set `APP_DEBUG=false` untuk production
 6. **Build Assets** jalankan `npm run build` sebelum deploy
+7. **Security** ⚠️ **JANGAN upload file `.env` ke GitHub!** Lihat [SECURITY.md](SECURITY.md)
 
 ## Troubleshooting
 

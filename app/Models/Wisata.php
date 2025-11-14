@@ -29,8 +29,4 @@ class Wisata extends Model
         'aktif' => 'boolean',
     ];
 
-    public function galeri(): HasMany
-    {
-        return $this->hasMany(GaleriWisata::class, 'wisata_id');
-    }
 }

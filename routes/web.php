@@ -36,8 +36,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:Admin'])->grou
     Route::get('wisata', [WisataController::class, 'index'])->name('wisata.index');
     Route::get('wisata/{id}/edit', [WisataController::class, 'edit'])->name('wisata.edit');
     Route::put('wisata/{id}', [WisataController::class, 'update'])->name('wisata.update');
-    Route::post('wisata/{id}/galeri', [WisataController::class, 'uploadGaleri'])->name('wisata.galeri.upload');
-    Route::delete('galeri/{id}', [WisataController::class, 'deleteGaleri'])->name('galeri.delete');
     
     // Transaksi
     Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');

@@ -25,8 +25,6 @@
 <body class="bg-slate-50 text-slate-900 antialiased scroll-smooth">
     @php
         $namaWisata = $wisata->nama_wisata ?? 'Wisata Lapade';
-        $heroImagePath = optional($wisata->galeri->first())->path_file;
-        $galleryImages = $wisata->galeri->take(5);
         $whatsappNumber = $wisata->nomor_whatsapp ? preg_replace('/[^0-9]/', '', $wisata->nomor_whatsapp) : null;
         $hargaDewasa = $wisata->harga_tiket_dewasa ?? $wisata->harga_tiket;
         $hargaAnak = $wisata->harga_tiket_anak ?? null;
@@ -55,13 +53,8 @@
 
             <section class="relative isolate overflow-hidden pt-32 pb-24">
                 <div class="absolute inset-0">
-                    @if($heroImagePath)
-                        <img src="{{ Storage::url($heroImagePath) }}" alt="{{ $namaWisata }}" class="h-full w-full object-cover">
-                        <div class="absolute inset-0 bg-slate-900/70"></div>
-                    @else
-                        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-emerald-800"></div>
-                        <div class="absolute inset-0 bg-slate-900/60"></div>
-                    @endif
+                    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-emerald-800"></div>
+                    <div class="absolute inset-0 bg-slate-900/60"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20"></div>
                 </div>
 

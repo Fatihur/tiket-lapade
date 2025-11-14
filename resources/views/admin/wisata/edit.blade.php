@@ -80,59 +80,6 @@
                         </div>
                     </div>
 
-                    <h6 class="fw-semibold mt-4 mb-3">Galeri Foto</h6>
-                    
-                    <div class="row mb-3">
-                        @forelse($wisata->galeri as $galeri)
-                            <div class="col-md-3 mb-3">
-                                <div class="card">
-                                    <img src="{{ Storage::url($galeri->path_file) }}" class="card-img-top" alt="{{ $galeri->keterangan }}">
-                                    <div class="card-body p-2">
-                                        <small>{{ $galeri->keterangan }}</small>
-                                        @if($galeri->utama)
-                                            <span class="badge bg-primary">Utama</span>
-                                        @endif
-                                        <form action="{{ route('admin.galeri.delete', $galeri->id) }}" method="POST" class="mt-2">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger w-100" onclick="return confirm('Hapus foto ini?')">Hapus</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="col-12">
-                                <p class="text-muted">Belum ada foto. Upload foto di bawah.</p>
-                            </div>
-                        @endforelse
-                    </div>
-
-                    <div class="card bg-light mb-4">
-                        <div class="card-body">
-                            <h6 class="fw-semibold mb-3">Upload Foto Baru</h6>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Pilih Gambar</label>
-                                    <input type="file" id="gambar" class="form-control" accept="image/*">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Keterangan</label>
-                                    <input type="text" id="keterangan" class="form-control" placeholder="Opsional">
-                                </div>
-                                <div class="col-md-2 mb-3">
-                                    <label class="form-label">&nbsp;</label>
-                                    <div class="form-check">
-                                        <input type="checkbox" id="utama" class="form-check-input">
-                                        <label class="form-check-label" for="utama">Utama</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" onclick="uploadGambar()" class="btn btn-success">
-                                <i class="ti ti-upload"></i> Upload Foto
-                            </button>
-                        </div>
-                    </div>
-
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         <a href="{{ route('admin.wisata.index') }}" class="btn btn-secondary">Batal</a>
@@ -143,41 +90,3 @@
     </div>
 </div>
 @endsection
-
-@push('scripts')
-<script>
-function uploadGambar() {
-    const gambar = document.getElementById('gambar').files[0];
-    const keterangan = document.getElementById('keterangan').value;
-    const utama = document.getElementById('utama').checked;
-    
-    if (!gambar) {
-        alert('Pilih gambar terlebih dahulu!');
-        return;
-    }
-    
-    const formData = new FormData();
-    formData.append('gambar', gambar);
-    formData.append('keterangan', keterangan);
-    formData.append('utama', utama ? '1' : '0');
-    formData.append('_token', '{{ csrf_token() }}');
-    
-    fetch('{{ route("admin.wisata.galeri.upload", $wisata->id) }}', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Foto berhasil diupload!');
-            location.reload();
-        } else {
-            alert('Gagal upload foto: ' + (data.message || 'Unknown error'));
-        }
-    })
-    .catch(error => {
-        alert('Error: ' + error);
-    });
-}
-</script>
-@endpush

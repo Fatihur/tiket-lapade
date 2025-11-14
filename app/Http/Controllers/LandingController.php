@@ -10,7 +10,7 @@ class LandingController extends Controller
     public function index()
     {
         // Ambil data wisata utama (hanya 1 data)
-        $wisata = Wisata::with('galeri')->first();
+        $wisata = Wisata::first();
         
         // Jika belum ada data, redirect ke halaman info
         if (!$wisata) {
@@ -22,7 +22,7 @@ class LandingController extends Controller
 
     public function detail($id)
     {
-        $wisata = Wisata::with('galeri')->findOrFail($id);
+        $wisata = Wisata::findOrFail($id);
         return view('landing.detail', compact('wisata'));
     }
 }

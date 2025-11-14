@@ -58,28 +58,7 @@
                     </div>
                 </div>
 
-                <div class="mb-4">
-                    <h6 class="fw-semibold">Galeri Foto ({{ $wisata->galeri->count() }} foto)</h6>
-                    <div class="row">
-                        @forelse($wisata->galeri as $galeri)
-                            <div class="col-md-3 mb-3">
-                                <div class="card">
-                                    <img src="{{ Storage::url($galeri->path_file) }}" class="card-img-top" alt="{{ $galeri->keterangan }}">
-                                    <div class="card-body p-2">
-                                        <small>{{ $galeri->keterangan }}</small>
-                                        @if($galeri->utama)
-                                            <span class="badge bg-primary">Utama</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="col-12">
-                                <p class="text-muted">Belum ada foto</p>
-                            </div>
-                        @endforelse
-                    </div>
-                </div>
+
 
                 <div class="mt-4">
                     <a href="{{ route('admin.wisata.edit', $wisata->id) }}" class="btn btn-primary">

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Wisata;
-use App\Models\GaleriWisata;
 use Illuminate\Http\Request;
 
 class WisataController extends Controller
@@ -23,14 +22,12 @@ class WisataController extends Controller
             ]
         );
         
-        $wisata->load('galeri');
-        
         return view('admin.wisata.index', compact('wisata'));
     }
 
     public function edit($id)
     {
-        $wisata = Wisata::with('galeri')->findOrFail($id);
+        $wisata = Wisata::findOrFail($id);
         return view('admin.wisata.edit', compact('wisata'));
     }
 
@@ -58,48 +55,4 @@ class WisataController extends Controller
     }
 
     // Tidak ada method destroy karena data wisata tidak bisa dihapus
-
-    public function uploadGaleri(Request $request, $id)
-    {
-        $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'keterangan' => 'nullable|string',
-            'utama' => 'boolean',
-        ]);
-
-        $wisata = Wisata::findOrFail($id);
-
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('galeri_wisata', $filename, 'public');
-
-            if ($request->utama) {
-                GaleriWisata::where('wisata_id', $id)->update(['utama' => false]);
-            }
-
-            GaleriWisata::create([
-                'wisata_id' => $id,
-                'nama_file' => $filename,
-                'path_file' => $path,
-                'keterangan' => $request->keterangan,
-                'utama' => $request->utama ?? false,
-            ]);
-        }
-
-        return response()->json(['success' => true, 'message' => 'Gambar berhasil ditambahkan']);
-    }
-
-    public function deleteGaleri($id)
-    {
-        $galeri = GaleriWisata::findOrFail($id);
-        
-        if (file_exists(storage_path('app/public/' . $galeri->path_file))) {
-            unlink(storage_path('app/public/' . $galeri->path_file));
-        }
-        
-        $galeri->delete();
-
-        return back()->with('success', 'Gambar berhasil dihapus.');
-    }
 }
