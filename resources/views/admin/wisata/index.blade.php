@@ -64,7 +64,7 @@
                         @forelse($wisata->galeri as $galeri)
                             <div class="col-md-3 mb-3">
                                 <div class="card">
-                                    <img src="{{ asset('storage/' . $galeri->path_file) }}" class="card-img-top" alt="{{ $galeri->keterangan }}">
+                                    <img src="{{ Storage::url($galeri->path_file) }}" class="card-img-top" alt="{{ $galeri->keterangan }}">
                                     <div class="card-body p-2">
                                         <small>{{ $galeri->keterangan }}</small>
                                         @if($galeri->utama)

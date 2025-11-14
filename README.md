@@ -92,6 +92,8 @@ php artisan db:seed
 php artisan storage:link
 ```
 
+**Catatan:** `php artisan storage:link` membuat symbolic link dari `public/storage` ke `storage/app/public` agar file upload bisa diakses publik.
+
 ### 5. Build Assets (Opsional untuk Admin Dashboard)
 
 ```bash

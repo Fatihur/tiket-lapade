@@ -53,7 +53,7 @@
             <section class="relative isolate overflow-hidden pt-32 pb-24">
                 <div class="absolute inset-0">
                     @if($heroImagePath)
-                        <img src="{{ asset('storage/' . $heroImagePath) }}" alt="{{ $namaWisata }}" class="h-full w-full object-cover">
+                        <img src="{{ Storage::url($heroImagePath) }}" alt="{{ $namaWisata }}" class="h-full w-full object-cover">
                         <div class="absolute inset-0 bg-slate-900/70"></div>
                     @else
                         <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-emerald-800"></div>
@@ -115,12 +115,12 @@
                             @if($wisata->galeri->count())
                                 <div class="mt-6 grid gap-4 md:grid-cols-2">
                                     <div class="overflow-hidden rounded-2xl">
-                                        <img src="{{ asset('storage/' . optional($wisata->galeri->first())->path_file) }}" alt="{{ $namaWisata }}" class="h-64 w-full object-cover">
+                                        <img src="{{ Storage::url(optional($wisata->galeri->first())->path_file) }}" alt="{{ $namaWisata }}" class="h-64 w-full object-cover">
                                     </div>
                                     <div class="grid gap-4">
                                         @forelse($galleryImages as $galeri)
                                             <div class="overflow-hidden rounded-2xl">
-                                                <img src="{{ asset('storage/' . $galeri->path_file) }}" alt="{{ $namaWisata }}" class="h-40 w-full object-cover">
+                                                <img src="{{ Storage::url($galeri->path_file) }}" alt="{{ $namaWisata }}" class="h-40 w-full object-cover">
                                             </div>
                                         @empty
                                             <div class="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-sm text-slate-500">

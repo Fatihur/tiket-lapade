@@ -56,7 +56,7 @@
             <section class="relative isolate overflow-hidden pt-32 pb-24">
                 <div class="absolute inset-0">
                     @if($heroImagePath)
-                        <img src="{{ asset('storage/' . $heroImagePath) }}" alt="{{ $namaWisata }}" class="h-full w-full object-cover">
+                        <img src="{{ Storage::url($heroImagePath) }}" alt="{{ $namaWisata }}" class="h-full w-full object-cover">
                         <div class="absolute inset-0 bg-slate-900/70"></div>
                     @else
                         <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-emerald-800"></div>

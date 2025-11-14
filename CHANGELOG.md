@@ -19,6 +19,7 @@
 - 🎨 Perbaikan tampilan laporan Bendahara
 - 🔄 Landing page sekarang menggunakan Tailwind CSS CDN (tidak perlu build)
 - 🔄 Admin dashboard tetap menggunakan Vite untuk Bootstrap
+- 🔄 Ganti `asset('storage/')` dengan `Storage::url()` untuk best practice Laravel
 
 ### Fixed
 - 🐛 Fix error Vite manifest not found di production

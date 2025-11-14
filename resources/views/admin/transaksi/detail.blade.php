@@ -71,10 +71,14 @@
                     <div class="col-md-6">
                         <h6 class="fw-semibold">Bukti Transfer</h6>
                         @if($pemesanan->bukti_transfer)
-                            <img src="{{ asset('storage/' . $pemesanan->bukti_transfer) }}" 
+                            <img src="{{ Storage::url($pemesanan->bukti_transfer) }}" 
                                  alt="Bukti Transfer" 
                                  class="img-fluid rounded mb-3"
-                                 style="max-height: 400px;">
+                                 style="max-height: 400px; cursor: pointer;"
+                                 onclick="window.open(this.src, '_blank')">
+                            <p class="text-muted small">
+                                <i class="ti ti-info-circle"></i> Klik gambar untuk melihat ukuran penuh
+                            </p>
                         @endif
 
                         <h6 class="fw-semibold mt-4">Status Pembayaran</h6>
