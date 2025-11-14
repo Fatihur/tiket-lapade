@@ -17,8 +17,10 @@ Aplikasi web untuk pemesanan tiket wisata secara online dengan sistem validasi p
 - Kelola galeri foto wisata
 - Validasi transaksi pembayaran
 - Generate QR Code tiket otomatis
+- Kirim tiket via email (PDF + QR Code)
 - Kelola user/petugas
 - Laporan penjualan tiket
+- Cetak laporan PDF (hanya data terverifikasi)
 
 ### 🎫 Petugas Tiket
 - Scan QR Code tiket dengan kamera
@@ -29,7 +31,9 @@ Aplikasi web untuk pemesanan tiket wisata secara online dengan sistem validasi p
 ### 💰 Bendahara
 - Laporan transaksi valid
 - Filter laporan berdasarkan periode
-- Verifikasi pendapatan
+- Verifikasi pendapatan (single & bulk)
+- Cetak laporan PDF
+- Tracking verifikator dan waktu verifikasi
 
 ### 📊 Owner
 - Dashboard statistik (harian, mingguan, bulanan)
@@ -189,17 +193,27 @@ chmod -R 775 storage
 chmod -R 775 bootstrap/cache
 ```
 
+## Fitur Terbaru ✨
+
+- ✅ **Email Tiket Otomatis** - Kirim tiket PDF dengan QR Code via email
+- ✅ **Cetak Laporan PDF** - Export laporan penjualan ke PDF (Admin & Bendahara)
+- ✅ **Bulk Verifikasi** - Verifikasi multiple transaksi sekaligus (Bendahara)
+- ✅ **Tracking Verifikasi** - Catat siapa dan kapan verifikasi dilakukan
+- ✅ **Toggle Password** - Show/hide password di halaman login
+- ✅ **Demo Credentials** - Tampilkan akun demo di halaman login
+
 ## Pengembangan Lebih Lanjut
 
 Fitur yang bisa ditambahkan:
-- [ ] Notifikasi email otomatis
 - [ ] Notifikasi WhatsApp
 - [ ] Payment Gateway integration
-- [ ] Export laporan ke PDF/Excel
+- [ ] Export laporan ke Excel
 - [ ] Multi-bahasa
 - [ ] Mobile app
 - [ ] Review & rating wisata
 - [ ] Promo & diskon
+- [ ] Booking calendar
+- [ ] Refund system
 
 ## Lisensi
 
