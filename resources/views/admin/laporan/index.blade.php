@@ -7,7 +7,17 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Laporan Penjualan Tiket</h5>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="card-title fw-semibold mb-0">Laporan Penjualan Tiket</h5>
+                    <a href="{{ route('admin.laporan.cetak-pdf', request()->all()) }}" class="btn btn-danger" target="_blank">
+                        <i class="ti ti-file-type-pdf"></i> Cetak PDF
+                    </a>
+                </div>
+                
+                <div class="alert alert-info">
+                    <i class="ti ti-info-circle me-2"></i>
+                    <strong>Informasi:</strong> Laporan ini hanya menampilkan transaksi yang sudah diverifikasi oleh Bendahara.
+                </div>
 
                 <form method="GET" class="mb-4">
                     <div class="row">
@@ -18,17 +28,6 @@
                         <div class="col-md-3">
                             <label class="form-label">Tanggal Sampai</label>
                             <input type="date" name="tanggal_sampai" class="form-control" value="{{ request('tanggal_sampai') }}">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Wisata</label>
-                            <select name="wisata_id" class="form-select">
-                                <option value="">Semua Wisata</option>
-                                @foreach($wisata as $w)
-                                    <option value="{{ $w->id }}" {{ request('wisata_id') == $w->id ? 'selected' : '' }}>
-                                        {{ $w->nama_wisata }}
-                                    </option>
-                                @endforeach
-                            </select>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">&nbsp;</label>
@@ -66,11 +65,10 @@
                                 <th>Tanggal</th>
                                 <th>Kode Pemesanan</th>
                                 <th>Nama Pemesan</th>
-                                <th>Wisata</th>
-                                <th>Tiket Dewasa</th>
-                                <th>Tiket Anak</th>
+                                <th>Jumlah Tiket</th>
                                 <th>Total Harga</th>
                                 <th>Divalidasi Oleh</th>
+                                <th>Diverifikasi Oleh</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,35 +77,37 @@
                                 <td>{{ $p->tanggal_kunjungan->format('d/m/Y') }}</td>
                                 <td>{{ $p->kode_pemesanan }}</td>
                                 <td>{{ $p->nama_pemesan }}</td>
-                                <td>{{ $p->wisata->nama_wisata }}</td>
-                                <td>{{ $p->jumlah_tiket_dewasa }}</td>
-                                <td>{{ $p->jumlah_tiket_anak }}</td>
+                                <td>{{ $p->jumlah_tiket }} orang</td>
                                 <td>Rp {{ number_format($p->total_harga, 0, ',', '.') }}</td>
                                 <td>{{ $p->validator->name ?? '-' }}</td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        <i class="ti ti-check"></i> {{ $p->verifikatorBendahara->name ?? '-' }}
+                                    </span>
+                                    <br>
+                                    <small class="text-muted">{{ $p->tanggal_verifikasi_bendahara ? $p->tanggal_verifikasi_bendahara->format('d/m/Y H:i') : '-' }}</small>
+                                </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="8" class="text-center">Tidak ada data</td>
+                                <td colspan="7" class="text-center">
+                                    <i class="ti ti-inbox" style="font-size: 48px; opacity: 0.3;"></i>
+                                    <p class="mt-2 mb-0">Belum ada transaksi yang diverifikasi oleh Bendahara</p>
+                                </td>
                             </tr>
                             @endforelse
                         </tbody>
                         <tfoot>
                             <tr class="fw-bold">
-                                <td colspan="6" class="text-end">TOTAL:</td>
+                                <td colspan="4" class="text-end">TOTAL:</td>
                                 <td>Rp {{ number_format($totalPendapatan, 0, ',', '.') }}</td>
-                                <td></td>
+                                <td colspan="2"></td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
 
-                @if($pemesanan->count() > 0)
-                <div class="mt-3">
-                    <button onclick="window.print()" class="btn btn-success">
-                        <i class="ti ti-printer"></i> Cetak Laporan
-                    </button>
-                </div>
-                @endif
+               
             </div>
         </div>
     </div>

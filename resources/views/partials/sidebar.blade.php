@@ -85,6 +85,12 @@
               <span class="hide-menu">Dashboard</span>
             </a>
           </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('bendahara.laporan') }}" aria-expanded="false">
+              <span><i class="ti ti-file-invoice"></i></span>
+              <span class="hide-menu">Laporan & Verifikasi</span>
+            </a>
+          </li>
         @elseif(auth()->user()->isOwner())
           <!-- Owner Menu -->
           <li class="nav-small-cap">

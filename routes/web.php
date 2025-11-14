@@ -46,6 +46,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:Admin'])->grou
     
     // Laporan
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('laporan/cetak-pdf', [LaporanController::class, 'cetakPdf'])->name('laporan.cetak-pdf');
     
     // User Management
     Route::resource('user', UserController::class);
@@ -62,8 +63,11 @@ Route::prefix('petugas')->name('petugas.')->middleware(['auth', 'role:Petugas'])
 // Bendahara Routes
 Route::prefix('bendahara')->name('bendahara.')->middleware(['auth', 'role:Bendahara'])->group(function () {
     Route::get('/dashboard', [BendaharaDashboard::class, 'index'])->name('dashboard');
-    Route::post('/verifikasi/{id}', [BendaharaDashboard::class, 'verifikasi'])->name('verifikasi');
-    Route::post('/batal-verifikasi/{id}', [BendaharaDashboard::class, 'batalVerifikasi'])->name('batal-verifikasi');
+    Route::get('/laporan', [\App\Http\Controllers\Bendahara\LaporanController::class, 'index'])->name('laporan');
+    Route::get('/laporan/cetak-pdf', [\App\Http\Controllers\Bendahara\LaporanController::class, 'cetakPdf'])->name('laporan.cetak-pdf');
+    Route::post('/laporan/verifikasi/{id}', [\App\Http\Controllers\Bendahara\LaporanController::class, 'verifikasi'])->name('laporan.verifikasi');
+    Route::post('/laporan/bulk-verifikasi', [\App\Http\Controllers\Bendahara\LaporanController::class, 'bulkVerifikasi'])->name('laporan.bulk-verifikasi');
+    Route::post('/laporan/batal-verifikasi/{id}', [\App\Http\Controllers\Bendahara\LaporanController::class, 'batalVerifikasi'])->name('laporan.batal-verifikasi');
 });
 
 // Owner Routes
