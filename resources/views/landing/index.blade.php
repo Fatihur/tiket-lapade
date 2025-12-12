@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lapade Adventure Pass | Pemesanan Tiket Wisata</title>
     <meta name="description" content="Pesan tiket resmi Wisata Lapade di Utan, Kabupaten Sumbawa, Nusa Tenggara Barat.">
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom Styles -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
         }
-        
+
         .scroll-smooth {
             scroll-behavior: smooth;
         }
@@ -24,7 +24,7 @@
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased scroll-smooth">
     @php
-        $namaWisata = $wisata->nama_wisata ?? 'Wisata Lapade';
+        $namaWisata = $wisata->nama_wisata ?? 'Pantai Wisata Lapade';
         $whatsappNumber = $wisata->nomor_whatsapp ? preg_replace('/[^0-9]/', '', $wisata->nomor_whatsapp) : null;
         $hargaDewasa = $wisata->harga_tiket_dewasa ?? $wisata->harga_tiket;
         $hargaAnak = $wisata->harga_tiket_anak ?? null;
@@ -51,32 +51,47 @@
                 </div>
             </nav>
 
-            <section class="relative isolate overflow-hidden pt-32 pb-24">
-                <div class="absolute inset-0">
-                    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-emerald-800"></div>
-                    <div class="absolute inset-0 bg-slate-900/60"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20"></div>
-                </div>
+<!-- HERO SECTION DENGAN GAMBAR BACKGROUND -->
+<section class="relative h-screen w-full flex items-center justify-center text-center">
+    <!-- Background Image -->
+    <div class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80');">
+    </div>
 
-                <div class="relative z-10 mx-auto max-w-4xl px-4 text-center text-white">
-                    <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-sm font-medium">
-                        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-                         Wisata Lapade - Utan, Kabupaten Sumbawa
-                    </p>
-                    <h1 class="text-4xl font-semibold leading-tight md:text-5xl">{{ $namaWisata }}</h1>
-                    <p class="mt-6 text-lg text-white/80">
-                        {{ $wisata->deskripsi ?: 'Kunjungi destinasi alam unggulan di Utan, Kecamatan Sumbawa, Nusa Tenggara Barat, dan pesan tiket resminya secara online.' }}
-                    </p>
-                    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-                        <a href="{{ route('pemesanan.create', $wisata->id) }}" class="inline-flex items-center justify-center rounded-full bg-sky-500 px-8 py-3 text-base font-semibold text-white shadow-lg shadow-sky-900/30 hover:bg-sky-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
-                            Pesan Tiket Sekarang
-                        </a>
-                       
-                    </div>
+    <!-- Overlay Warna Selaras Tema -->
+    <div class="absolute inset-0 bg-gradient-to-b from-sky-900/70 via-sky-800/55 to-slate-900/80"></div>
 
-                   
-                </div>
-            </section>
+    <div class="relative max-w-2xl mx-auto text-white px-6">
+        <h1 class="text-4xl md:text-5xl font-extrabold drop-shadow-lg mb-3">
+            Selamat Datang di Taman Wisata Lapade
+        </h1>
+
+        <p class="text-lg md:text-xl opacity-90 mb-6 leading-relaxed">
+            Destinasi wisata dengan pesona alam yang memukau untuk liburan keluarga dan tempat bersantai.
+        </p>
+
+        <a href="{{ route('pemesanan.create', $wisata->id) }}"
+           class="inline-block px-7 py-3 rounded-lg font-semibold text-white
+                  bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700
+                  shadow-xl transition">
+           Pesan Tiket
+        </a>
+    </div>
+</section>
+
+
+<!-- Tambahkan animasi halus -->
+<style>
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+        animation: fadeIn 1s ease-out forwards;
+    }
+</style>
+
+
         </header>
 
         <main class="flex-1">
@@ -138,7 +153,7 @@
                                     <p class="mt-2 text-sm text-slate-500">per orang</p>
                                 </div>
                             @endif
-                           
+
                             <div class="rounded-2xl border border-slate-100 p-5">
                                 <p class="text-sm font-medium text-slate-500">Parkir motor</p>
                                 <p class="mt-2 text-3xl font-semibold text-slate-900">Rp {{ number_format($wisata->biaya_parkir_motor ?? 0, 0, ',', '.') }}</p>
