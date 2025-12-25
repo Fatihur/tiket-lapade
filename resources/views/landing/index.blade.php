@@ -62,9 +62,9 @@
     <div class="absolute inset-0 bg-gradient-to-b from-sky-900/70 via-sky-800/55 to-slate-900/80"></div>
 
     <div class="relative max-w-2xl mx-auto text-white px-6">
-        <h1 class="text-4xl md:text-5xl font-extrabold drop-shadow-lg mb-3">
+        {{-- <h1 class="text-4xl md:text-5xl font-extrabold drop-shadow-lg mb-3">
             Selamat Datang di Taman Wisata Lapade
-        </h1>
+        </h1> --}}
 
         <p class="text-lg md:text-xl opacity-90 mb-6 leading-relaxed">
             Destinasi wisata dengan pesona alam yang memukau untuk liburan keluarga dan tempat bersantai.
